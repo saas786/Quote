@@ -6,13 +6,24 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
+        <title>Quote Builder - By Ryan Potter</title>
+        <meta name="description" content="Create a quote in a minute">
         <meta name="viewport" content="width=device-width">
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
+		
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=541528375936618";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+		
         <!--[if lt IE 9]>
             <p class="chromeframe alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
@@ -173,9 +184,9 @@
 						
 						<hr />
 						
-						<div class="clearfix">
-							<button type="submit" class="btn btn-lg btn-primary pull-right btn-block-xs"><i class="fa fa-floppy-o"></i> Generate PDF</button>
-						</div><!-- /.clearfix -->
+						<p class="clearfix"><button type="submit" class="btn btn-lg btn-primary pull-right btn-block-xs"><i class="fa fa-floppy-o"></i> Generate PDF</button></p>
+						
+						<div class="fb-like" data-href="http://demo.ryanpotter.co.nz/quote" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
 
 					</form><!-- /#quoteBuilder -->
 					
