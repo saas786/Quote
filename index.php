@@ -13,7 +13,7 @@
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
-        <!--[if lt IE 7]>
+        <!--[if lt IE 9]>
             <p class="chromeframe alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
@@ -39,7 +39,7 @@
 							</div><!-- /.col-xs-6 -->
 							<div class="col-xs-6">
 								<div class="form-group">
-									<input type="text" name="quoteNumber" class="form-control" placeholder="Quote Number" />
+									<input type="text" name="quoteNumber" class="form-control" placeholder="Quote #" />
 								</div><!-- /.form-group -->
 							</div><!-- /.col-xs-6 -->
 						</div><!-- /.row -->
@@ -51,7 +51,7 @@
 								<h4>Prepared By</h4>
 
 								<div class="form-group">
-									<input type="text" name="companyName" class="form-control" placeholder="Company Name" />
+									<input type="text" name="companyName" required class="form-control" placeholder="Company Name" />
 								</div><!-- /.form-group -->
 
 								<div class="form-group">
@@ -75,7 +75,7 @@
 								<div class="form-group">
 									<div class="row">
 										<div class="col-xs-6">
-											<input type="text" name="clientFirstName" class="form-control" placeholder="First Name" />
+											<input type="text" name="clientFirstName" required class="form-control" placeholder="First Name" />
 										</div><!-- /.col-xs-6 -->
 										<div class="col-xs-6">
 											<input type="text" name="clientLastName" class="form-control" placeholder="Last Name" />
@@ -125,20 +125,21 @@
 
 									<div class="col-xs-12 col-sm-7 col-md-9">
 										<label class="visible-xs">Task</label>
-										<input type="text" name="task[]" class="form-control task-name" placeholder="Task" />
+										<input type="text" name="task[]" required class="form-control task-name" placeholder="Task Description" />
 									</div><!-- /.col-xs-12 col-sm-9 -->
 
-									<div class="col-xs-12 col-sm-2 col-md-1">
+									<div class="col-xs-4 col-sm-2 col-md-1">
 										<label class="visible-xs">Unit</label>
-										<input type="number" name="task[]" class="form-control task-unit" placeholder="0" />
+										<input type="number" name="task[]" required class="form-control task-unit" placeholder="0" />
 									</div><!-- /.col-xs-12 col-sm-2 col-md-1 -->
 
-									<div class="col-xs-12 col-sm-2 col-md-1">
+									<div class="col-xs-5 col-sm-2 col-md-1">
 										<label class="visible-xs">Rate</label>
-										<input type="number" name="task[]" class="form-control task-rate" placeholder="0" />
+										<input type="number" name="task[]" required class="form-control task-rate" placeholder="0" />
 									</div><!-- /.col-xs-12 col-sm-2 col-md-1 -->
 
-									<div class="col-xs-12 col-sm-1">
+									<div class="col-xs-3 col-sm-1">
+										<label class="visible-xs">&nbsp;</label>
 										<a href="#" class="btn btn-danger btn-block remove"><i class="fa fa-times"></i></a><!-- /.btn btn-danger btn-block remove -->
 									</div><!-- /.col-xs-12 col-sm-1 -->
 
@@ -147,11 +148,24 @@
 							</section><!-- /#tasks -->
 
 							<div class="col-xs-12 col-sm-offset-9 col-sm-3">
-								<a id="addNewTask" href="#" class="btn btn-default btn-block">Add New Task</a><!-- /.btn btn-danger btn-block -->
+								<a id="addNewTask" href="#" class="btn btn-inverse btn-block"><i class="fa fa-plus"></i> Add New Task</a><!-- /.btn btn-danger btn-block -->
+							</div><!-- /.col-xs-12 col-sm-offset-9 col-sm-3 -->
+							
+							<div id="taxHolder" class="col-xs-12 col-sm-offset-9 col-sm-3">
+								<div class="input-group">
+									<span class="input-group-addon">Tax</span>
+									<input type="text" id="taxInput" name="taxInput" maxlength="2" class="form-control" placeholder="00">
+									<span class="input-group-addon">%</span>
+								</div><!-- /#taxHolder .col-xs-12 col-sm-offset-9 col-sm-3 -->
 							</div><!-- /.col-xs-12 col-sm-offset-9 col-sm-3 -->
 
 						</div><!-- /.row -->
-
+						
+						<div class="clearfix">
+							<h5 class="pull-right">Subtotal: <strong>$<span id="taskSubtotal">0</span></strong></h5>
+							<input type="hidden" id="taskSubtotalInput" name="taskSubtotalInput" value="0" />
+						</div><!-- /.clearfix -->
+						
 						<div class="clearfix">
 							<h5 class="pull-right">Total: <strong>$<span id="taskTotal">0</span></strong></h5>
 							<input type="hidden" id="taskTotalInput" name="taskTotalInput" value="0" />
@@ -160,7 +174,7 @@
 						<hr />
 						
 						<div class="clearfix">
-							<input type="submit" class="btn btn-lg btn-primary pull-right" value="Generate PDF" />
+							<button type="submit" class="btn btn-lg btn-primary pull-right btn-block-xs"><i class="fa fa-floppy-o"></i> Generate PDF</button>
 						</div><!-- /.clearfix -->
 
 					</form><!-- /#quoteBuilder -->
@@ -172,18 +186,6 @@
 		</section><!-- /#mainContainer -->
 
         <?php include("layout/footer.php"); ?>
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src='//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
+        <script type="text/javascript" src="js/dist.min.js"></script>
     </body>
 </html>

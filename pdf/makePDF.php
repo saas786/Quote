@@ -8,13 +8,19 @@ class PDF extends FPDF{
 		$this->SetFont('Arial','B',15);
 		// Title
 		if($_POST['quoteTitle']){
-			$this->Cell(30,10,$_POST['quoteTitle'],0,0,'c');
+			$this->Cell(20,10,$_POST['quoteTitle'],0,0,'c');
 		}else{
-			$this->Cell(30,10,'Quote',0,0,'c');
+			$this->Cell(20,10,'Quote',0,0,'c');
+		}
+		
+		$this->SetFont('Arial','',10);
+		
+		if(!empty($_POST['quoteNumber'])){
+			$this->Cell(0,10,'Quote #: '.$_POST['quoteNumber'],0,0, 'R');
 		}
 		
 		// Line break
-		$this->Ln(20);
+		$this->Ln(10);
 	}
 
 	// Page footer
@@ -31,26 +37,41 @@ class PDF extends FPDF{
 	function BasicTable($data)
 	{
 		$count = 0;
-		$this->SetFont('Arial','',10);
+		$this->SetFont('Arial','B',10);
+		$this->SetDrawColor(220, 220, 220);
 		
-		$this->Cell(60,10,'Task Name',1);
-		$this->Cell(60,10,'Units',1);
-		$this->Cell(60,10,'Rate',1);
+		$this->Cell(150,10,'Task Name', 'B');
+		$this->Cell(20,10,'Units', 'B', '', 'C');
+		$this->Cell(20,10,'Rate', 'B', '', 'R');
 		$this->Ln();
+		
+		$this->SetFont('Arial','',10);
 		
 		foreach($data as $row)
 		{
 			$count++;
-			$this->Cell(60,10,$row,1);
-			if($count % 3 == 0){
+			if($count == 1){
+				$this->Cell(150,10,$row, 'B');
+			}else if($count == 2){
+				$this->Cell(20,10,$row, 'B', '', 'C');
+			}else{
+				$this->Cell(20,10,'$'.$row, 'B', '', 'R');
 				$this->Ln();
+				$count = 0;
 			}
-			
 		}
 		
-		$this->Cell(120,10,'',1);
-		$this->Cell(60,10,'Total: $'.$_POST['taskTotalInput'],1);
+		if($_POST['taxInput'] > 0){
+			$this->Cell(0,10,'Subotal: $'.$_POST['taskSubtotalInput'], 0, '', 'R');
+			$this->Ln(5);
+			$this->Cell(0,10,'Tax: '.$_POST['taxInput'].'%', 0, '', 'R');
+			$this->Ln(10);
+		}
+		$this->SetFont('Arial','B',14);
+		$this->Cell(0,10,'Total: $'.$_POST['taskTotalInput'], 0, '', 'R');
 		$this->Ln();
+		
+		$this->SetDrawColor(0, 0, 0);
 		
 	}
 	
@@ -60,10 +81,6 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','',10);
-
-if(!empty($_POST['quoteNumber'])){
-	$pdf->Cell(50,10,'Quote Number: '.$_POST['quoteNumber'],0,0);
-}
 
 $pdf->Ln();
 

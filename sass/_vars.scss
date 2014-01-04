@@ -5,6 +5,11 @@ $gap-lg: 60px;
 $gap-xl: 120px;
 
 $brand-default: #f3eee7;
+$brand-inverse: #f3eee7;
+
+$btn-inverse-color: #222 !default;
+$btn-inverse-bg: $brand-inverse !default;
+$btn-inverse-border: darken($btn-inverse-bg, 20%) !default;
 
 $brand-danger: #82403b;
 $btn-danger-border: darken($brand-danger, 15%);

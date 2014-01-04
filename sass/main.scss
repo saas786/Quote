@@ -73,22 +73,22 @@ input::-webkit-inner-spin-button {
 	.remove{display: none;}
 }
 
-#mainContainer{margin: $gap-lg 0;
+#mainContainer{margin: $gap-sm 0;
 	> .container{
-		> .inner{
-			background: #5f3c22 url(../img/bg-wood.jpg) top left repeat;
-			border-radius: $gap-sm;
-			padding: $gap-md;
-			@include box-shadow( inset 2px 2px 2px rgba(255,255,255,0.3),0px 0px 20px 2px rgba(0,0,0,0.7));
-		}
+		> .inner{}
 	}
 }
 
-#quoteBuilder{background-color: $brand-default;border-top: none;
-	padding: $gap-md;
-	@include box-shadow(rgba(0, 0, 0, 0.701961) 0px 2px 8px 2px);
-	@include border-bottom-radius(4px);
+#quoteBuilder{background-color: $brand-default;border-top: none;padding: $gap-sm;
+	label{margin: $gap-xs 0;}
 }
+
+.page-header{background-color: $brand-danger;color: #fff;padding: $gap-sm $gap-md;border-radius: 4px 4px 0px 0px;position: relative;z-index: 1;border: 1px solid $btn-danger-border;margin: 0px -1px;
+	@include box-shadow(inset 0px 2px 1px rgba(255,255,255,0.1),0px 2px 3px 0px rgba(0,0,0,0.2));
+	h1{margin: 0;text-shadow: 0px 0px 3px rgba(0,0,0,0.6);font-size: 25px}
+}
+
+#taxHolder{margin-top: $gap-sm;}
 
 .form-control {display: block;width: 100%;height: 34px;color: #555555;vertical-align: middle;background-color: #fff;border: 1px solid #c1bdb8;border-top: 1px solid #a9a49d;
 	border-radius: 4px;
@@ -96,11 +96,38 @@ input::-webkit-inner-spin-button {
 	@include transition(border-color ease-in-out .15s, box-shadow ease-in-out .15s);
 }
 
-.page-header{background-color: $brand-danger;color: #fff;padding: $gap-sm $gap-md;border-radius: 4px 4px 0px 0px;position: relative;z-index: 1;border: 1px solid $btn-danger-border;margin: 0px -1px;
-	@include box-shadow(inset 0px 2px 1px rgba(255,255,255,0.1),0px 2px 3px 0px rgba(0,0,0,0.2));
-	h1{margin: 0;text-shadow: 0px 0px 3px rgba(0,0,0,0.6);}
-}
-
 .btn{
 	@include box-shadow(inset 0px 1px 1px 0px rgba(255,255,255,0.3),0px 1px 3px 0px rgba(0,0,0,0.1));
+	&.btn-block-xs{
+		@extend .btn-block;
+	}
+	&.btn-inverse {
+		@include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border);
+	}
+}
+
+@media (min-width: $screen-sm){
+	#mainContainer{margin: $gap-lg 0;
+		> .container{
+			> .inner{
+				background: #5f3c22 url(../img/bg-wood.jpg) top left repeat;
+				border-radius: $gap-sm;
+				padding: $gap-md;
+				@include box-shadow( inset 2px 2px 2px rgba(255,255,255,0.3),0px 0px 20px 2px rgba(0,0,0,0.7));
+			}
+		}
+	}
+	#quoteBuilder{background-color: $brand-default;border-top: none;
+		padding: $gap-md;
+		@include box-shadow(rgba(0, 0, 0, 0.701961) 0px 2px 8px 2px);
+		@include border-bottom-radius(4px);
+	}
+	.page-header{
+		h1{font-size: 36px;}
+	}
+	.btn{
+		&.btn-block-xs{display: inline-block;width: auto;
+			&.btn-lg{padding: 10px 16px;}
+		}
+	}
 }

@@ -44,8 +44,10 @@
 		});
 		
 		// Calculate total
-		$('#tasks').on('keyup keypress blur change', 'input', function(){
-			var total = 0;
+		$('#tasks, #taxHolder').on('keyup keypress blur change', 'input', function(){
+			var total = 0,
+				tax;
+			tax = $('#taxInput').val();
 			$('.clone-task').each(function(){
 				var rate = parseInt($('.task-rate', this).val()),
 					unit = parseInt($('.task-unit', this).val()),
@@ -54,8 +56,12 @@
 					total = total + combined;
 				}
 			});
-			$('#taskTotal').html(total);
-			$('#taskTotalInput').val(total);
+			$('#taskSubtotal').html(total);
+			$('#taskSubtotalInput').val(total);
+			
+			tax = Math.round(((tax / 100) * total) + total);
+			$('#taskTotal').html(tax);
+			$('#taskTotalInput').val(tax);
 		});
 		
     })
