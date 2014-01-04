@@ -7,3 +7,4 @@ Just a nice simple little app to generate PDF quotes/invoices. Feel free to subm
 * [Sass Bootstrap](https://github.com/thomas-mcdonald/bootstrap-sass)
 * [Font Awesome](http://fontawesome.io/)
 * [Grunt](http://gruntjs.com/)
+* [FPDF](http://www.fpdf.org/)
